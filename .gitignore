@@ -52,3 +52,7 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 thumbs.db
+
+# Archives
+*.zip
+
