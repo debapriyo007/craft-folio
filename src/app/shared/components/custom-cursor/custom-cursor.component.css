@@ -1,0 +1,68 @@
+:host {
+  display: contents;
+  pointer-events: none;
+}
+
+.custom-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999999;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.custom-cursor-container.visible {
+  opacity: 1;
+}
+
+/* 🚩 Custom Flag Cursor Container (Fixed upright, zero dancing/wobbling) */
+.flag-cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  will-change: transform;
+  transform-origin: 3px 0px;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 🧱 Authentic Minecraft / Pixel-Art Indian Flag (Balanced Webpage Scale) */
+.tiranga-flag-img {
+  width: 48px;
+  height: 48px;
+  display: block;
+  /* Crisp square pixel art rendering */
+  image-rendering: -moz-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  /* Top-left golden finial pinned directly to mouse pointer tip */
+  margin-top: 0px;
+  margin-left: -3px;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* 🌟 Interactive Hover (over buttons, links, project cards) */
+.custom-cursor-container.hovered .flag-cursor-wrapper {
+  transform: scale(1.15);
+  filter: drop-shadow(0 4px 12px rgba(255, 153, 51, 0.55))
+    drop-shadow(0 2px 6px rgba(19, 136, 8, 0.45));
+}
+
+/* 💥 Interactive Click / Tap Feedback */
+.custom-cursor-container.clicking .flag-cursor-wrapper {
+  transform: scale(0.9);
+  transition-duration: 40ms;
+}
+
+/* 📱 Disable completely on touch devices */
+@media (pointer: coarse), (hover: none) {
+  .custom-cursor-container {
+    display: none !important;
+  }
+}

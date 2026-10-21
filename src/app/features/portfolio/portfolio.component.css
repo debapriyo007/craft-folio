@@ -1,0 +1,45 @@
+:host {
+  display: block;
+}
+
+.portfolio-main {
+  width: min(1140px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.site-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 22px;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-top: 28px;
+}
+
+.sidebar-column {
+  min-width: 0;
+}
+
+.content-column {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .portfolio-main {
+    width: min(100% - 24px, 1140px);
+  }
+
+  .site-actions {
+    padding-top: 14px;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

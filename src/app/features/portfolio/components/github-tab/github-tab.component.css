@@ -1,0 +1,398 @@
+:host {
+  display: block;
+}
+
+.tab-panel {
+  min-height: 320px;
+  animation: tabFadeIn 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.github-container {
+  width: 100%;
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.header-indicator {
+  width: 6px;
+  height: 22px;
+  border-radius: 2px;
+  background: var(--text-main);
+  box-shadow: var(--indicator-glow);
+  margin-top: 4px;
+}
+
+.section-title {
+  margin: 0 0 4px 0;
+  font-family: var(--font-pixel);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-main);
+}
+
+.github-intro {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.github-status-glass {
+  padding: 18px 22px;
+  border-radius: 6px;
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  box-shadow: var(--glass-shadow);
+  color: var(--text-soft);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.github-status-glass.loading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-top-color: var(--text-main);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.github-status-glass.error {
+  border-color: rgba(239, 68, 68, 0.4);
+  color: var(--mc-redstone);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.retry-btn {
+  align-self: flex-start;
+  padding: 6px 16px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  box-shadow: var(--mc-btn-bevel);
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  font-weight: 700;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.retry-btn:hover {
+  opacity: 0.85;
+}
+
+.github-skeletons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.skeleton-card {
+  height: 180px;
+  border-radius: 6px;
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  box-shadow: var(--glass-shadow);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.github-repo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+/* 🧱 Transparent Glass Repo Card */
+.github-glass-card {
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition:
+    transform 120ms ease,
+    border-color var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
+  position: relative;
+}
+
+.github-glass-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.github-glass-card.pinned {
+  border-left: 3px solid var(--border-strong);
+}
+
+.repo-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.repo-title-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.repo-folder-icon {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  color: var(--mc-diamond);
+}
+
+.repo-name {
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: 15.5px;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.repo-anchor {
+  color: var(--text-main);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+  transition: color var(--transition-speed) ease;
+}
+
+.repo-anchor:hover {
+  color: var(--mc-diamond);
+}
+
+.pinned-tag {
+  font-family: var(--font-pixel);
+  font-size: 10.5px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  border: 1px solid var(--pinned-tag-border);
+  background: var(--pinned-tag-bg);
+  color: var(--pinned-tag-color);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pin-icon {
+  width: 10px;
+  height: 10px;
+}
+
+.repo-desc {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.repo-meta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+.repo-lang-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.lang-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.repo-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stat-icon {
+  width: 13px;
+  height: 13px;
+}
+
+.repo-topics-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.topic-tag {
+  border: 1px solid var(--border);
+  box-shadow: var(--mc-bevel-slot);
+  border-radius: 3px;
+  padding: 2px 7px;
+  color: var(--text-muted);
+  background: var(--surface-muted);
+  font-family: var(--font-pixel);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+}
+
+.repo-btn {
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 4px;
+  background: var(--btn-glass-bg);
+  border: 1px solid var(--btn-glass-border);
+  box-shadow: var(--mc-btn-bevel);
+  color: var(--btn-glass-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-pixel);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: auto;
+  transition:
+    transform 60ms ease,
+    background-color var(--transition-speed) ease,
+    border-color var(--transition-speed) ease,
+    box-shadow 60ms ease;
+  user-select: none;
+}
+
+.repo-btn:hover {
+  transform: translateY(-2px);
+  background: var(--btn-glass-hover-bg);
+  border-color: var(--btn-glass-hover-border);
+  box-shadow:
+    var(--mc-btn-bevel),
+    0 0 12px var(--mc-diamond-glow);
+}
+
+.repo-btn:active {
+  transform: translate(1px, 2px);
+  box-shadow: var(--mc-bevel-slot);
+}
+
+.btn-git-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.external-arrow {
+  width: 12px;
+  height: 12px;
+  opacity: 0.7;
+}
+
+.load-more-wrapper {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.load-more-glass-btn {
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 4px;
+  background: var(--btn-glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--btn-glass-border);
+  box-shadow: var(--mc-btn-bevel);
+  color: var(--btn-glass-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition:
+    transform 60ms ease,
+    background-color var(--transition-speed) ease,
+    border-color var(--transition-speed) ease,
+    box-shadow 60ms ease;
+  user-select: none;
+}
+
+.load-more-glass-btn:hover {
+  background: var(--btn-glass-hover-bg);
+  border-color: var(--btn-glass-hover-border);
+  box-shadow:
+    var(--mc-btn-bevel),
+    0 0 16px var(--mc-diamond-glow);
+}
+
+.load-more-glass-btn:active {
+  transform: translate(1px, 2px);
+  box-shadow: var(--mc-bevel-slot);
+}
+
+.chevron-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--transition-speed) ease;
+}
+
+.load-more-glass-btn:hover .chevron-icon {
+  transform: translateY(2px);
+}
+
+@media (max-width: 640px) {
+  .github-repo-grid {
+    grid-template-columns: 1fr;
+  }
+}

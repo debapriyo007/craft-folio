@@ -1,0 +1,560 @@
+:root {
+  color-scheme: dark light;
+
+  /* Font stacks */
+  --font-pixel: 'Pixelify Sans', 'Silkscreen', monospace;
+  --font-sans:
+    'Pixelify Sans', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
+  --font-display: var(--font-pixel);
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Palette & Accent Tokens (Sleek Obsidian Black & Platinum Theme) */
+  --mc-accent: #ffffff;
+  --mc-accent-glow: rgba(255, 255, 255, 0.25);
+  --mc-diamond: #0f172a;
+  --mc-diamond-glow: rgba(15, 23, 42, 0.15);
+  --mc-emerald: #10b981;
+  --mc-emerald-glow: rgba(16, 185, 129, 0.35);
+  --mc-gold: #f59e0b;
+  --mc-gold-glow: rgba(245, 158, 11, 0.35);
+  --mc-redstone: #ef4444;
+
+  /* ☀️ Light Mode Tokens (Pure Quartz Crystal Transparent Glass) */
+  --bg-page: #f8fafc;
+  --surface-glass: rgba(255, 255, 255, 0.78);
+  --surface-glass-hover: rgba(255, 255, 255, 0.95);
+  --surface-muted: rgba(0, 0, 0, 0.04);
+  --surface-strong: rgba(0, 0, 0, 0.08);
+
+  --text-main: #0f172a;
+  --text-muted: #334155;
+  --text-soft: #64748b;
+
+  --border: rgba(0, 0, 0, 0.1);
+  --border-subtle: rgba(0, 0, 0, 0.05);
+  --border-strong: #0f172a;
+  --focus: #0f172a;
+
+  /* Primary Action Button (Sleek Solid Obsidian Black in Light Mode) */
+  --btn-primary-bg: #0f172a;
+  --btn-primary-text: #ffffff;
+  --btn-primary-border: #0f172a;
+  --btn-primary-hover-bg: #1e293b;
+  --btn-primary-hover-border: #1e293b;
+  --btn-primary-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+
+  /* Secondary Glass Button */
+  --btn-glass-bg: rgba(255, 255, 255, 0.85);
+  --btn-glass-text: #0f172a;
+  --btn-glass-border: rgba(0, 0, 0, 0.12);
+  --btn-glass-hover-bg: #ffffff;
+  --btn-glass-hover-border: #0f172a;
+
+  /* Active Hotbar Tab */
+  --tab-active-bg: #0f172a;
+  --tab-active-text: #ffffff;
+  --tab-active-border: #0f172a;
+  --tab-active-shadow: 0 4px 14px rgba(15, 23, 42, 0.22);
+  --tab-active-text-shadow: none;
+
+  /* Skill Icon Bubble */
+  --skill-icon-bg: rgba(0, 0, 0, 0.035);
+  --skill-icon-border: rgba(0, 0, 0, 0.08);
+  --skill-icon-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+
+  /* Grades and Badges (Crisp Deep Emerald in Light Mode) */
+  --grade-color: #047857;
+  --grade-bg: rgba(5, 150, 105, 0.09);
+  --grade-border: rgba(5, 150, 105, 0.25);
+
+  /* Pinned Repo Tag (Crisp Deep Amber in Light Mode) */
+  --pinned-tag-color: #b45309;
+  --pinned-tag-bg: rgba(245, 158, 11, 0.12);
+  --pinned-tag-border: rgba(245, 158, 11, 0.35);
+
+  /* Hero & Visual accents */
+  --hero-name-shadow: none;
+  --indicator-glow: none;
+  --avatar-glow-bg: radial-gradient(circle, rgba(15, 23, 42, 0.08), transparent 70%);
+  --avatar-frame-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(241, 245, 249, 0.7));
+  --avatar-frame-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+
+  /* Transparent Glass 3D Bevels (Light Mode) */
+  --mc-bevel: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 8px 24px rgba(0, 0, 0, 0.05);
+  --mc-bevel-slot: inset 0 1px 2px rgba(0, 0, 0, 0.06), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  --mc-btn-bevel: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 3px 8px rgba(0, 0, 0, 0.06);
+
+  --glass-blur: blur(20px) saturate(180%);
+  --glass-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.06);
+  --glass-shadow-hover: 0 14px 32px -4px rgba(0, 0, 0, 0.1);
+  --glass-glow: inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+
+  --icon-filter: none;
+  --card-radius: 8px;
+  --pill-radius: 6px;
+  --transition-speed: 180ms;
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --bg-page: #f8fafc;
+  --surface-glass: rgba(255, 255, 255, 0.78);
+  --surface-glass-hover: rgba(255, 255, 255, 0.95);
+  --surface-muted: rgba(0, 0, 0, 0.04);
+  --surface-strong: rgba(0, 0, 0, 0.08);
+
+  --text-main: #0f172a;
+  --text-muted: #334155;
+  --text-soft: #64748b;
+
+  --border: rgba(0, 0, 0, 0.1);
+  --border-subtle: rgba(0, 0, 0, 0.05);
+  --border-strong: #0f172a;
+  --focus: #0f172a;
+
+  --btn-primary-bg: #0f172a;
+  --btn-primary-text: #ffffff;
+  --btn-primary-border: #0f172a;
+  --btn-primary-hover-bg: #1e293b;
+  --btn-primary-hover-border: #1e293b;
+  --btn-primary-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+
+  --btn-glass-bg: rgba(255, 255, 255, 0.85);
+  --btn-glass-text: #0f172a;
+  --btn-glass-border: rgba(0, 0, 0, 0.12);
+  --btn-glass-hover-bg: #ffffff;
+  --btn-glass-hover-border: #0f172a;
+
+  --tab-active-bg: #0f172a;
+  --tab-active-text: #ffffff;
+  --tab-active-border: #0f172a;
+  --tab-active-shadow: 0 4px 14px rgba(15, 23, 42, 0.22);
+  --tab-active-text-shadow: none;
+
+  --skill-icon-bg: rgba(0, 0, 0, 0.035);
+  --skill-icon-border: rgba(0, 0, 0, 0.08);
+  --skill-icon-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+
+  --grade-color: #047857;
+  --grade-bg: rgba(5, 150, 105, 0.09);
+  --grade-border: rgba(5, 150, 105, 0.25);
+
+  --pinned-tag-color: #b45309;
+  --pinned-tag-bg: rgba(245, 158, 11, 0.12);
+  --pinned-tag-border: rgba(245, 158, 11, 0.35);
+
+  --hero-name-shadow: none;
+  --indicator-glow: none;
+  --avatar-glow-bg: radial-gradient(circle, rgba(15, 23, 42, 0.08), transparent 70%);
+  --avatar-frame-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(241, 245, 249, 0.7));
+  --avatar-frame-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+
+  --mc-bevel: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 8px 24px rgba(0, 0, 0, 0.05);
+  --mc-bevel-slot: inset 0 1px 2px rgba(0, 0, 0, 0.06), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  --mc-btn-bevel: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 3px 8px rgba(0, 0, 0, 0.06);
+
+  --glass-blur: blur(20px) saturate(180%);
+  --glass-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.06);
+  --glass-shadow-hover: 0 14px 32px -4px rgba(0, 0, 0, 0.1);
+  --glass-glow: inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* 🖤 Dark Mode (Pure Obsidian Black Transparent Glass Theme) */
+  --bg-page: #060608;
+  --surface-glass: rgba(18, 18, 24, 0.45);
+  --surface-glass-hover: rgba(28, 28, 38, 0.65);
+  --surface-muted: rgba(255, 255, 255, 0.04);
+  --surface-strong: rgba(255, 255, 255, 0.08);
+
+  --text-main: #f8fafc;
+  --text-muted: #cbd5e1;
+  --text-soft: #94a3b8;
+
+  --border: rgba(255, 255, 255, 0.09);
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-strong: rgba(255, 255, 255, 0.85);
+  --focus: rgba(255, 255, 255, 0.85);
+
+  --mc-diamond: #ffffff;
+  --mc-diamond-glow: rgba(255, 255, 255, 0.2);
+
+  /* Primary Action Button (Luminous Platinum Glass in Dark Mode) */
+  --btn-primary-bg: rgba(255, 255, 255, 0.14);
+  --btn-primary-text: #ffffff;
+  --btn-primary-border: rgba(255, 255, 255, 0.4);
+  --btn-primary-hover-bg: rgba(255, 255, 255, 0.24);
+  --btn-primary-hover-border: #ffffff;
+  --btn-primary-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 4px 16px rgba(0, 0, 0, 0.4);
+
+  /* Secondary Glass Button */
+  --btn-glass-bg: rgba(18, 18, 24, 0.45);
+  --btn-glass-text: #f8fafc;
+  --btn-glass-border: rgba(255, 255, 255, 0.09);
+  --btn-glass-hover-bg: rgba(28, 28, 38, 0.65);
+  --btn-glass-hover-border: rgba(255, 255, 255, 0.85);
+
+  /* Active Hotbar Tab */
+  --tab-active-bg: rgba(255, 255, 255, 0.12);
+  --tab-active-text: #ffffff;
+  --tab-active-border: rgba(255, 255, 255, 0.85);
+  --tab-active-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 0 16px rgba(255, 255, 255, 0.15);
+  --tab-active-text-shadow: 1px 1px 0 #000;
+
+  /* Skill Icon Bubble */
+  --skill-icon-bg: rgba(0, 0, 0, 0.4);
+  --skill-icon-border: rgba(255, 255, 255, 0.1);
+  --skill-icon-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.8);
+
+  /* Grades and Badges (Dark Mode Emerald Glow) */
+  --grade-color: #10b981;
+  --grade-bg: rgba(16, 185, 129, 0.12);
+  --grade-border: rgba(16, 185, 129, 0.3);
+
+  /* Pinned Repo Tag (Dark Mode Gold) */
+  --pinned-tag-color: #f59e0b;
+  --pinned-tag-bg: rgba(245, 158, 11, 0.15);
+  --pinned-tag-border: rgba(245, 158, 11, 0.4);
+
+  /* Hero & Visual accents */
+  --hero-name-shadow: 2px 2px 0 #000;
+  --indicator-glow: 0 0 8px rgba(255, 255, 255, 0.25);
+  --avatar-glow-bg: radial-gradient(circle, rgba(255, 255, 255, 0.14), transparent 70%);
+  --avatar-frame-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.02));
+  --avatar-frame-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+
+  /* Transparent Glass 3D Bevels (Obsidian Black Glass) */
+  --mc-bevel: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 14px 36px rgba(0, 0, 0, 0.55);
+  --mc-bevel-slot: inset 0 1px 2px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --mc-btn-bevel: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 4px 14px rgba(0, 0, 0, 0.4);
+
+  --glass-blur: blur(24px) saturate(180%);
+  --glass-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.6);
+  --glass-shadow-hover: 0 20px 48px 0 rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 255, 255, 0.08);
+  --glass-glow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.06);
+
+  --icon-filter: invert(1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 15.5px;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition:
+    background-color var(--transition-speed) ease,
+    color var(--transition-speed) ease;
+  overflow-x: hidden;
+}
+
+/* Background Subtle Minecraft Pixel Grid Mesh */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(128, 128, 128, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(128, 128, 128, 0.035) 1px, transparent 1px);
+  background-size: 16px 16px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* 🌌 Ambient Atmosphere Lighting (Obsidian Black Glass Theme) */
+.ambient-background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+/* Dark Mode Ambient Neutral Smoke & Moonlight */
+[data-theme='dark'] .orb-top {
+  width: 780px;
+  height: 520px;
+  top: -160px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(20, 20, 28, 0.45) 45%,
+    transparent 75%
+  );
+  filter: blur(100px);
+  animation: float-slow 18s ease-in-out infinite alternate;
+}
+
+[data-theme='dark'] .orb-middle {
+  width: 600px;
+  height: 480px;
+  top: 35%;
+  left: -120px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 75%);
+  filter: blur(120px);
+  animation: float-reverse 22s ease-in-out infinite alternate;
+}
+
+[data-theme='dark'] .orb-bottom {
+  width: 720px;
+  height: 540px;
+  bottom: -60px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 75%);
+  filter: blur(110px);
+  animation: float-slow 20s ease-in-out infinite alternate;
+}
+
+/* Light Mode Ambient Pearl Diffusion */
+[data-theme='light'] .orb-top {
+  width: 800px;
+  height: 540px;
+  top: -180px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle,
+    rgba(148, 163, 184, 0.25) 0%,
+    rgba(203, 213, 225, 0.12) 60%,
+    transparent 80%
+  );
+  filter: blur(110px);
+  animation: float-slow 18s ease-in-out infinite alternate;
+}
+
+[data-theme='light'] .orb-middle {
+  width: 650px;
+  height: 500px;
+  top: 35%;
+  left: -120px;
+  background: radial-gradient(circle, rgba(203, 213, 225, 0.2) 0%, transparent 80%);
+  filter: blur(120px);
+  animation: float-reverse 22s ease-in-out infinite alternate;
+}
+
+[data-theme='light'] .orb-bottom {
+  width: 700px;
+  height: 520px;
+  bottom: -60px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(203, 213, 225, 0.22) 0%, transparent 80%);
+  filter: blur(120px);
+  animation: float-slow 20s ease-in-out infinite alternate;
+}
+
+@keyframes float-slow {
+  0% {
+    transform: translate(-50%, 0) scale(1);
+  }
+  50% {
+    transform: translate(-48%, 32px) scale(1.06);
+  }
+  100% {
+    transform: translate(-52%, -24px) scale(0.96);
+  }
+}
+
+@keyframes float-reverse {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-36px) scale(1.05);
+  }
+  100% {
+    transform: translateY(22px) scale(0.96);
+  }
+}
+
+/* Typography resets */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  color: var(--text-main);
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    opacity var(--transition-speed) ease,
+    color var(--transition-speed) ease;
+}
+
+button,
+a,
+input,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+figure {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+/* Glass scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: var(--pill-radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-soft);
+}
+
+::selection {
+  background: var(--text-main);
+  color: var(--bg-page);
+}
+
+/* Custom Cursor default replacement on desktop */
+@media (pointer: fine) and (hover: hover) {
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    cursor: none !important;
+  }
+}
+
+/* 💎 Minecraft Enchantment Glint Animation */
+@keyframes mcEnchantGlint {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ⚔️ Minecraft 3D Button Style */
+.mc-block-btn {
+  font-family: var(--font-pixel);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: var(--surface-glass);
+  border: 1px solid var(--border);
+  box-shadow: var(--mc-btn-bevel);
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 13px;
+  transition:
+    transform 60ms ease,
+    box-shadow 60ms ease,
+    background-color var(--transition-speed) ease;
+  user-select: none;
+}
+
+.mc-block-btn:hover {
+  background: var(--surface-glass-hover);
+  border-color: var(--mc-diamond);
+  box-shadow:
+    var(--mc-btn-bevel),
+    0 0 12px var(--mc-diamond-glow);
+}
+
+.mc-block-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--mc-bevel-slot);
+}
+
+/* 🌓 Day / Night View Transitions Wave Reveal */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  display: block;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* ⚡ Tab Content Smooth Reveal Animation */
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

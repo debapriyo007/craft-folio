@@ -1,0 +1,103 @@
+<div class="tab-panel" id="tab-panel-resume" role="tabpanel" aria-labelledby="tab-btn-resume">
+  <!-- Education Section -->
+  <section class="resume-section" aria-label="Education">
+    <div class="section-header">
+      <div class="header-indicator"></div>
+      <h2 class="section-title">Education</h2>
+    </div>
+
+    <div class="education-timeline">
+      @for (item of education(); track item.institution) {
+        <article class="education-glass-card">
+          <div class="card-edge-glow"></div>
+          <div class="education-main">
+            <h3 class="education-institution">{{ item.institution }}</h3>
+            <p class="education-degree">{{ item.degree }}</p>
+          </div>
+          <div class="education-meta">
+            <span class="period-badge">
+              <svg
+                class="meta-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              {{ item.period }}
+            </span>
+            <span class="grade-badge">
+              <svg
+                class="meta-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                ></polygon>
+              </svg>
+              {{ item.grade }}
+            </span>
+          </div>
+        </article>
+      }
+    </div>
+
+    <!-- Resume Download Button -->
+    <div class="resume-btn-wrapper">
+      <a
+        [href]="profile().resumePdfUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="resume-download-btn"
+      >
+        <svg
+          class="download-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Download Full Resume (PDF)</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Skills and Technologies Section -->
+  <section class="resume-section" aria-label="Skills and Technologies">
+    <div class="section-header">
+      <div class="header-indicator"></div>
+      <h2 class="section-title">Skills & Technologies</h2>
+    </div>
+
+    <ul class="skills-grid">
+      @for (skill of skills(); track skill.name) {
+        <li class="skill-glass-pill">
+          <div class="skill-icon-bubble">
+            <img
+              [src]="skill.icon"
+              [alt]="skill.name"
+              class="skill-img"
+              width="24"
+              height="24"
+              loading="lazy"
+            />
+          </div>
+          <span class="skill-name">{{ skill.name }}</span>
+        </li>
+      }
+    </ul>
+  </section>
+</div>

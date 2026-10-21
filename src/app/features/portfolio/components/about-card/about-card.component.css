@@ -1,0 +1,167 @@
+:host {
+  display: block;
+}
+
+.about-glass-card {
+  position: sticky;
+  top: 24px;
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  padding: 26px 24px;
+  box-shadow: var(--glass-shadow);
+  transition:
+    background-color var(--transition-speed) ease,
+    border-color var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  pointer-events: none;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.header-indicator {
+  width: 6px;
+  height: 18px;
+  border-radius: 2px;
+  background: var(--text-main);
+  box-shadow: var(--indicator-glow);
+}
+
+.card-title {
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: 19px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-main);
+}
+
+.about-text {
+  margin: 0 0 22px 0;
+  font-size: 14.5px;
+  line-height: 1.68;
+  color: var(--text-muted);
+}
+
+.card-divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin-bottom: 20px;
+}
+
+.about-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* 🧱 Transparent Glass Slot Bubble */
+.meta-icon-bubble {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  box-shadow: var(--mc-bevel-slot);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-main);
+  transition:
+    transform 60ms ease,
+    border-color var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
+}
+
+.meta-row:hover .meta-icon-bubble {
+  transform: scale(1.06);
+  border-color: var(--border-strong);
+  box-shadow:
+    var(--mc-bevel-slot),
+    0 0 10px var(--mc-diamond-glow);
+}
+
+.meta-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.meta-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.meta-label {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  letter-spacing: 0.06em;
+  margin-bottom: 2px;
+}
+
+.meta-val {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-main);
+  overflow-wrap: anywhere;
+}
+
+.meta-link {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-main);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.meta-link:hover {
+  opacity: 0.8;
+}
+
+.link-arrow {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+@media (max-width: 900px) {
+  .about-glass-card {
+    position: static;
+    padding: 24px;
+  }
+}

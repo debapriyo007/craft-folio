@@ -1,0 +1,6 @@
+dist/
+node_modules/
+.angular/
+legacy_backup/
+package-lock.json
+public/assets/

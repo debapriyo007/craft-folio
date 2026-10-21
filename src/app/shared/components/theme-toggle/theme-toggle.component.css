@@ -1,0 +1,143 @@
+:host {
+  display: block;
+}
+
+.theme-toggle-btn {
+  height: 42px;
+  border-radius: 4px;
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  box-shadow: var(--glass-shadow);
+  color: var(--text-main);
+  padding: 0 16px 0 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition:
+    transform 60ms ease,
+    border-color var(--transition-speed) ease,
+    background-color var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.theme-toggle-btn:hover {
+  transform: translateY(-2px);
+  background: var(--surface-glass-hover);
+  border-color: var(--border-strong);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.theme-toggle-btn:active {
+  transform: translate(1px, 2px);
+}
+
+.icon-slot {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border-radius: 3px;
+  background: var(--surface-muted);
+  box-shadow: var(--mc-bevel-slot);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-toggle-btn:hover .icon-slot {
+  transform: scale(1.08);
+}
+
+/* 🌞 Celestial Sun & Moon Orbit Animation */
+.theme-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  transition:
+    transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 280ms ease,
+    filter 300ms ease;
+}
+
+.theme-icon.sun {
+  stroke: var(--mc-gold);
+  filter: drop-shadow(0 0 5px var(--mc-gold-glow));
+  transform: translate(-50%, -50%) rotate(-100deg) scale(0.2);
+  opacity: 0;
+}
+
+.theme-icon.sun.active {
+  transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  opacity: 1;
+}
+
+.theme-icon.moon {
+  stroke: var(--text-main);
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.16));
+  transform: translate(-50%, -50%) rotate(100deg) scale(0.2);
+  opacity: 0;
+}
+
+.theme-icon.moon.active {
+  transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  opacity: 1;
+}
+
+/* 📜 Sliding Text Container */
+.theme-text-container {
+  position: relative;
+  height: 18px;
+  min-width: 90px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.theme-realm-label {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-main);
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateY(calc(-50% + 14px));
+  opacity: 0;
+  transition:
+    transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 240ms ease,
+    color var(--transition-speed) ease;
+}
+
+.theme-realm-label.active {
+  transform: translateY(-50%);
+  opacity: 1;
+}
+
+@media (max-width: 760px) {
+  .theme-toggle-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .theme-text-container {
+    display: none;
+  }
+}

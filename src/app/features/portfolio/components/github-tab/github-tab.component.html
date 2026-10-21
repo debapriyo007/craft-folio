@@ -1,0 +1,172 @@
+<div class="tab-panel" id="tab-panel-github" role="tabpanel" aria-labelledby="tab-btn-github">
+  <div class="github-container">
+    <div class="section-header">
+      <div class="header-indicator"></div>
+      <div>
+        <h2 class="section-title">GitHub Repositories</h2>
+        <p class="github-intro">
+          Curated repositories and open-source projects prioritized by stars and pinned highlights.
+        </p>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    @if (isLoading()) {
+      <div class="github-status-glass loading" role="status">
+        <span class="spinner" aria-hidden="true"></span>
+        <span>Fetching live repositories from GitHub API...</span>
+      </div>
+      <div class="github-skeletons" aria-hidden="true">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+    }
+
+    <!-- Error State -->
+    @else if (errorMessage()) {
+      <div class="github-status-glass error" role="alert">
+        <p>{{ errorMessage() }}</p>
+        <button class="retry-btn" type="button" (click)="retry()">Retry Fetch</button>
+      </div>
+    }
+
+    <!-- Empty State -->
+    @else if (repos().length === 0) {
+      <div class="github-status-glass">No public repositories found.</div>
+    }
+
+    <!-- Repositories List -->
+    @else {
+      <div class="github-repo-grid">
+        @for (repo of visibleRepos(); track repo.id) {
+          <article class="github-glass-card" [class.pinned]="repo.isPinned">
+            <div class="repo-top">
+              <div class="repo-title-row">
+                <svg
+                  class="repo-folder-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
+                  ></path>
+                </svg>
+                <h3 class="repo-name">
+                  <a
+                    [href]="repo.url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="repo-anchor"
+                  >
+                    {{ repo.name }}
+                  </a>
+                </h3>
+              </div>
+              @if (repo.isPinned) {
+                <span class="pinned-tag">
+                  <svg class="pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                    ></polygon>
+                  </svg>
+                  Pinned
+                </span>
+              }
+            </div>
+
+            <p class="repo-desc">{{ repo.description }}</p>
+
+            <div class="repo-meta-row">
+              @if (repo.language) {
+                <span class="repo-lang-pill">
+                  <span
+                    class="lang-dot"
+                    [style.background-color]="repo.languageColor"
+                    aria-hidden="true"
+                  ></span>
+                  {{ repo.language }}
+                </span>
+              }
+
+              <span class="repo-stat">
+                <svg class="stat-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+                {{ repo.stars }}
+              </span>
+
+              <span class="repo-stat">
+                <svg
+                  class="stat-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="6" y1="3" x2="6" y2="15"></line>
+                  <circle cx="18" cy="6" r="3"></circle>
+                  <circle cx="6" cy="18" r="3"></circle>
+                  <path d="M18 9a9 9 0 0 1-9 9"></path>
+                </svg>
+                {{ repo.forks }}
+              </span>
+            </div>
+
+            @if (repo.topics.length > 0) {
+              <div class="repo-topics-wrap" aria-label="Repository topics">
+                @for (topic of repo.topics; track topic) {
+                  <span class="topic-tag">{{ topic }}</span>
+                }
+              </div>
+            }
+
+            <a [href]="repo.url" target="_blank" rel="noopener noreferrer" class="repo-btn">
+              <svg class="btn-git-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                />
+              </svg>
+              <span>View Repository</span>
+              <svg
+                class="external-arrow"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </article>
+        }
+      </div>
+
+      @if (hasMore()) {
+        <div class="load-more-wrapper">
+          <button
+            class="load-more-glass-btn"
+            type="button"
+            (click)="loadMore()"
+            aria-label="Load more repositories"
+          >
+            <span>Load More Repositories</span>
+            <svg
+              class="chevron-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+        </div>
+      }
+    }
+  </div>
+</div>

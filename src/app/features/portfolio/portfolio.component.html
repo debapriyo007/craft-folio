@@ -1,0 +1,34 @@
+<main class="portfolio-main">
+  <!-- Top Bar Site Actions -->
+  <header class="site-actions">
+    <app-theme-toggle />
+  </header>
+
+  <!-- Hero Section -->
+  <app-hero />
+
+  <!-- Main Article / Responsive 2-column layout -->
+  <div class="portfolio-grid">
+    <aside class="sidebar-column">
+      <app-about-card />
+    </aside>
+
+    <div class="content-column">
+      <app-tab-nav [activeTab]="activeTab()" (tabChange)="setTab($event)" />
+
+      @switch (activeTab()) {
+        @case ('resume') {
+          <app-resume-tab />
+        }
+        @case ('projects') {
+          <app-projects-tab />
+        }
+        @case ('github') {
+          <app-github-tab />
+        }
+      }
+    </div>
+  </div>
+</main>
+
+<app-footer />

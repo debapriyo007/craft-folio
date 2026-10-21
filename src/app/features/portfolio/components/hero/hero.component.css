@@ -1,0 +1,229 @@
+:host {
+  display: block;
+}
+
+.hero-section {
+  margin-top: 14px;
+  margin-bottom: 36px;
+}
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 36px;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.hero-avatar-container {
+  position: relative;
+  width: 210px;
+  height: 210px;
+  flex-shrink: 0;
+}
+
+.avatar-glow {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: var(--avatar-glow-bg);
+  filter: blur(20px);
+  z-index: 0;
+}
+
+/* 🌟 Circular Transparent Glass Avatar Frame */
+.avatar-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 5px;
+  background: var(--avatar-frame-bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--avatar-frame-shadow);
+  z-index: 1;
+  overflow: hidden;
+  transition:
+    transform var(--transition-speed) cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow var(--transition-speed) ease;
+}
+
+.avatar-frame:hover {
+  transform: scale(1.03);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.hero-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 15%;
+  border: 2px solid rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.5);
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.hero-content {
+  min-width: 0;
+}
+
+.hero-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.hero-name {
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: 46px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-main);
+  text-shadow: var(--hero-name-shadow);
+}
+
+.hero-wave {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 55% 85%;
+  animation: mcWave 2.2s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hero-wave:hover {
+  transform: scale(1.2) rotate(12deg);
+}
+
+.wave-pixel-img {
+  width: 42px;
+  height: auto;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  user-select: none;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+}
+
+[data-theme='light'] .wave-pixel-img {
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.18));
+}
+
+@keyframes mcWave {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(16deg);
+  }
+  20% {
+    transform: rotate(-10deg);
+  }
+  30% {
+    transform: rotate(18deg);
+  }
+  40% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(12deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.hero-bio {
+  max-width: 680px;
+  margin: 0 0 24px;
+  color: var(--text-muted);
+  font-size: 15.5px;
+  line-height: 1.65;
+}
+
+.hero-action-pills {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* 💎 Transparent Glass Action Buttons */
+.glass-pill-btn {
+  font-family: var(--font-pixel);
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 4px;
+  background: var(--btn-glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--btn-glass-border);
+  box-shadow: var(--glass-shadow);
+  color: var(--btn-glass-text);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition:
+    transform 60ms ease,
+    background-color var(--transition-speed) ease,
+    border-color var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
+  user-select: none;
+}
+
+.glass-pill-btn:hover {
+  transform: translateY(-2px);
+  background: var(--btn-glass-hover-bg);
+  border-color: var(--btn-glass-hover-border);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.glass-pill-btn:active {
+  transform: translate(1px, 2px);
+}
+
+.glass-pill-btn.primary {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 1px solid var(--btn-primary-border);
+  box-shadow: var(--btn-primary-shadow);
+}
+
+.glass-pill-btn.primary:hover {
+  background: var(--btn-primary-hover-bg);
+  border-color: var(--btn-primary-hover-border);
+}
+
+.pill-icon {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 900px) {
+  .hero-layout {
+    grid-template-columns: 1fr;
+    text-align: left;
+    gap: 24px;
+  }
+
+  .hero-avatar-container {
+    width: 170px;
+    height: 170px;
+  }
+
+  .hero-name {
+    font-size: 34px;
+  }
+}

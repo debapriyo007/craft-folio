@@ -1,0 +1,275 @@
+:host {
+  display: block;
+}
+
+.tab-panel {
+  min-height: 320px;
+  animation: tabFadeIn 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.resume-section {
+  margin-bottom: 34px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.header-indicator {
+  width: 6px;
+  height: 18px;
+  border-radius: 2px;
+  background: var(--text-main);
+  box-shadow: var(--indicator-glow);
+}
+
+.section-title {
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-main);
+}
+
+.education-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+/* 🧱 Transparent Glass Quest Milestone Card */
+.education-glass-card {
+  position: relative;
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 18px 22px;
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  transition:
+    background-color var(--transition-speed) ease,
+    border-color var(--transition-speed) ease,
+    transform 100ms ease,
+    box-shadow var(--transition-speed) ease;
+  overflow: hidden;
+}
+
+.education-glass-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.card-edge-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--border-strong);
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease;
+  box-shadow: 0 0 8px var(--border-strong);
+}
+
+.education-glass-card:hover .card-edge-glow {
+  opacity: 1;
+}
+
+.education-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.education-institution {
+  margin: 0 0 4px 0;
+  font-family: var(--font-pixel);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+}
+
+.education-degree {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+.education-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.period-badge,
+.grade-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 3px;
+  background: var(--surface-muted);
+  box-shadow: var(--mc-bevel-slot);
+  border: 1px solid var(--border);
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: var(--text-main);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.grade-badge {
+  color: var(--grade-color);
+  background: var(--grade-bg);
+  border-color: var(--grade-border);
+}
+
+.meta-icon {
+  width: 13px;
+  height: 13px;
+  color: var(--text-soft);
+}
+
+.resume-btn-wrapper {
+  margin: 20px 0 32px;
+}
+
+/* 💎 Transparent Glass Download Button */
+.resume-download-btn {
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 4px;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 1px solid var(--btn-primary-border);
+  box-shadow: var(--btn-primary-shadow);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition:
+    transform 60ms ease,
+    background-color var(--transition-speed) ease,
+    border-color var(--transition-speed) ease,
+    box-shadow 60ms ease;
+  user-select: none;
+}
+
+.resume-download-btn:hover {
+  transform: translateY(-2px);
+  background: var(--btn-primary-hover-bg);
+  border-color: var(--btn-primary-hover-border);
+}
+
+.resume-download-btn:active {
+  transform: translate(1px, 2px);
+  box-shadow: var(--mc-bevel-slot);
+}
+
+.download-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--transition-speed) ease;
+}
+
+.resume-download-btn:hover .download-icon {
+  transform: translateY(2px);
+}
+
+/* 🎒 Minecraft Inventory GUI Skills Grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(136px, 1fr));
+  gap: 12px;
+}
+
+.skill-glass-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 12px;
+  box-shadow: var(--mc-bevel-slot);
+  transition:
+    transform 80ms ease,
+    border-color var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
+  user-select: none;
+}
+
+.skill-glass-pill:hover {
+  transform: translateY(-2px);
+  border-color: var(--mc-diamond);
+  box-shadow:
+    var(--mc-bevel-slot),
+    0 0 12px var(--mc-diamond-glow);
+}
+
+.skill-icon-bubble {
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+  background: var(--skill-icon-bg);
+  border: 1px solid var(--skill-icon-border);
+  box-shadow: var(--skill-icon-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.skill-img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.skill-glass-pill:hover .skill-img {
+  transform: scale(1.15);
+}
+
+.skill-name {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-main);
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .education-glass-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
