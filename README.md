@@ -63,31 +63,6 @@ debu_21_portfolio-Latest_25/
 
 ---
 
-## ⚡ Tech Stack & Highlights
-
-- **Framework**: Angular 22 (Standalone Components, Signals, Computed, Effects)
-- **Language**: TypeScript 6.0 with strict typing and module resolution
-- **Styling**: Pure Vanilla CSS design tokens (`--surface-glass`, `--mc-diamond`, `--mc-gold`)
-- **Animation & Transitions**:
-  - **Native View Transitions API**: Expanding radial clip-path wave reveal emanating from the toggle button
-  - **Celestial Orbit**: Sun and moon rotation and scaling transitions
-  - **Tab Fade**: Smooth keyframed tab switches
-- **State Management**: Angular Signals (`signal<T>`, `computed()`) for ultra-responsive fine-grained updates without Zone.js overhead
-- **Testing**: Vitest with unit test coverage across services and standalone components
-
----
-
-## 🎨 Theme Realms (Day & Night)
-
-The application features a bidirectional theme system tailored with high-contrast palette tokens:
-
-| Realm | Theme | Description |
-| :--- | :--- | :--- |
-| **Overworld Day** | `[data-theme='light']` | Quartz crystal glass, crisp obsidian text (`#0f172a`), emerald badge highlights |
-| **Netherite Night** | `[data-theme='dark']` | Sleek obsidian black glass (`rgba(10, 10, 15, 0.72)`), subtle pearl smoke lighting, glowing gold & platinum accents |
-
----
-
 ## 🛠️ Developer Scripts
 
 | Command | Description |
@@ -125,15 +100,6 @@ npm start
 
 Navigate to `http://localhost:4200/` in your browser.
 
----
-
-## 🧪 Running Tests
-
-To run the complete test suite:
-
-```bash
-npm run test:ci
-```
 
 ---
 
