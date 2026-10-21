@@ -1,9 +1,3 @@
-# ⚔️ Debapriya Das — Portfolio
-
-A high-performance personal portfolio built with **Angular (v22)**, **TypeScript**, and **Vanilla CSS**. Designed with a sleek **Minecraft-inspired Obsidian & Quartz glassmorphism aesthetic**, responsive hotbar navigation, dynamic Day/Night Realm view transitions, and real-time GitHub integration.
-
----
-
 ## 🏛️ Project Architecture & Directory Layout
 
 The codebase follows enterprise Angular architectural conventions, organized by functional layers with path aliases (`@core`, `@shared`, `@features`, `@env`) and clean barrel exports (`index.ts`):
