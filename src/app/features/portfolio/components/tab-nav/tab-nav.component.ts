@@ -15,6 +15,7 @@ export class TabNavComponent {
     { id: 'resume', label: 'Resume', icon: 'file' },
     { id: 'projects', label: 'Projects', icon: 'layers' },
     { id: 'github', label: 'GitHub Repos', icon: 'github' },
+    { id: 'zone', label: "Debu's Zone", icon: 'compass' },
   ];
 
   selectTab(tabId: PortfolioTab): void {

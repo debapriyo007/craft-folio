@@ -1,0 +1,180 @@
+<section id="anime-watchlist" class="zone-section-card" aria-label="Anime Watchlist">
+  <!-- Section Header -->
+  <div class="section-header">
+    <div class="header-indicator"></div>
+    <div class="header-titles">
+      <div class="section-tag">MODULE // 03</div>
+      <h2 class="section-title">ANIME WATCHLIST</h2>
+      <p class="section-desc">
+        Curated archive of legendary shonen, psychological thrillers, and comfort series.
+      </p>
+    </div>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar" role="tablist" aria-label="Anime filter categories">
+    <button
+      type="button"
+      class="filter-pill"
+      [class.active]="activeFilter() === 'ALL'"
+      (click)="setFilter('ALL')"
+      role="tab"
+      [attr.aria-selected]="activeFilter() === 'ALL'"
+    >
+      ALL ({{ animeList.length }})
+    </button>
+    <button
+      type="button"
+      class="filter-pill"
+      [class.active]="activeFilter() === 'WATCHING'"
+      (click)="setFilter('WATCHING')"
+      role="tab"
+      [attr.aria-selected]="activeFilter() === 'WATCHING'"
+    >
+      WATCHING
+    </button>
+    <button
+      type="button"
+      class="filter-pill"
+      [class.active]="activeFilter() === 'COMPLETED'"
+      (click)="setFilter('COMPLETED')"
+      role="tab"
+      [attr.aria-selected]="activeFilter() === 'COMPLETED'"
+    >
+      COMPLETED
+    </button>
+    <button
+      type="button"
+      class="filter-pill"
+      [class.active]="activeFilter() === 'PLAN TO WATCH'"
+      (click)="setFilter('PLAN TO WATCH')"
+      role="tab"
+      [attr.aria-selected]="activeFilter() === 'PLAN TO WATCH'"
+    >
+      PLAN TO WATCH
+    </button>
+  </div>
+
+  <!-- Anime Cards Grid -->
+  <div class="anime-grid">
+    @for (anime of filteredAnime(); track anime.id) {
+      <article
+        class="anime-card"
+        role="button"
+        tabindex="0"
+        (click)="openDetail(anime)"
+        (keydown.enter)="openDetail(anime)"
+        (keydown.space)="openDetail(anime)"
+        [attr.aria-label]="anime.title + ', Status: ' + anime.status + ', Click to view review'"
+      >
+        <div class="poster-container">
+          <img
+            [src]="anime.poster"
+            [alt]="anime.title + ' Poster'"
+            class="poster-img"
+            loading="lazy"
+          />
+          <div class="poster-overlay"></div>
+          <span
+            class="status-tag"
+            [class.watching]="anime.status === 'WATCHING'"
+            [class.completed]="anime.status === 'COMPLETED'"
+          >
+            {{ anime.status }}
+          </span>
+        </div>
+
+        <div class="card-content">
+          <div class="title-rating-row">
+            <h3 class="anime-title">{{ anime.title }}</h3>
+            @if (anime.rating) {
+              <span class="anime-rating">★ {{ anime.rating }}</span>
+            }
+          </div>
+
+          <div class="anime-genre-tags">
+            @for (genre of anime.genres.slice(0, 3); track genre) {
+              <span class="genre-pill">{{ genre }}</span>
+            }
+          </div>
+
+          <p class="anime-synopsis">{{ anime.personalReview }}</p>
+
+          <div class="card-footer">
+            <span class="fav-char-preview">
+              <span class="char-lbl">FAV:</span> {{ anime.favoriteCharacter }}
+            </span>
+            <span class="view-detail-hint">DETAILS →</span>
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+
+  <!-- Detail Modal -->
+  @if (selectedAnime(); as item) {
+    <div
+      class="modal-backdrop"
+      (click)="closeDetail()"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-label]="item.title + ' Details'"
+    >
+      <div class="modal-box" (click)="$event.stopPropagation()">
+        <div class="modal-top-bar">
+          <div class="modal-badge">
+            <span class="badge-square"></span>
+            <span>ANIME LOG // ENTRY #{{ item.id }}</span>
+          </div>
+          <button
+            type="button"
+            class="modal-close-btn"
+            (click)="closeDetail()"
+            aria-label="Close modal window"
+          >
+            <span>✕ ESC</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-poster-wrap">
+            <img [src]="item.poster" [alt]="item.title" class="modal-poster-img" />
+            <div class="modal-status-badge">{{ item.status }}</div>
+          </div>
+
+          <div class="modal-info-col">
+            <h3 class="modal-title">{{ item.title }}</h3>
+            <div class="modal-meta-row">
+              <span class="meta-item"
+                ><span class="meta-k">EPISODES:</span> {{ item.episodes }}</span
+              >
+              @if (item.rating) {
+                <span class="meta-item highlight">
+                  <span class="meta-k">SCORE:</span> ★ {{ item.rating }}
+                </span>
+              }
+            </div>
+
+            <div class="modal-genres">
+              @for (g of item.genres; track g) {
+                <span class="genre-tag">{{ g }}</span>
+              }
+            </div>
+
+            <!-- Favorite Character Spotlight -->
+            <div class="char-spotlight-box">
+              <span class="spotlight-tag">FAVORITE CHARACTER</span>
+              <div class="spotlight-name">{{ item.favoriteCharacter }}</div>
+            </div>
+
+            <!-- Review Log -->
+            <div class="review-box">
+              <span class="review-label">PERSONAL VERDICT & LOG:</span>
+              <p class="review-text">{{ item.personalReview }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</section>

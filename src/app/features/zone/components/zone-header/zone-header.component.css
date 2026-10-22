@@ -1,0 +1,257 @@
+:host {
+  display: block;
+  margin-bottom: 24px;
+}
+
+.zone-header-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.zone-top-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  padding: 8px 14px;
+  box-shadow: var(--glass-shadow);
+}
+
+.back-portfolio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  box-shadow: var(--mc-bevel-slot);
+  color: var(--text-main);
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-speed) ease,
+    border-color var(--transition-speed) ease,
+    transform 60ms ease;
+  user-select: none;
+}
+
+.back-portfolio-btn:hover {
+  background: var(--surface-glass-hover);
+  border-color: var(--border-strong);
+}
+
+.back-portfolio-btn:active {
+  transform: translate(1px, 1px);
+}
+
+.back-arrow-icon {
+  width: 14px;
+  height: 14px;
+  display: none;
+}
+
+.top-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+  text-transform: uppercase;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mc-emerald);
+  box-shadow: 0 0 8px var(--mc-emerald-glow);
+  animation: pulseEmerald 2.4s infinite ease-in-out;
+}
+
+@keyframes pulseEmerald {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.85);
+  }
+}
+
+.zone-theme-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+/* 🧱 Retro Hero Profile Card */
+.zone-hero-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  padding: 24px 28px;
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.zone-hero-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  pointer-events: none;
+}
+
+.hero-avatar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.avatar-frame {
+  width: 80px;
+  height: 80px;
+  border-radius: 6px;
+  background: var(--surface-muted);
+  border: 2px solid var(--border);
+  box-shadow: var(--mc-bevel-slot);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 4px;
+  transition:
+    transform var(--transition-speed) ease,
+    border-color var(--transition-speed) ease;
+}
+
+.zone-hero-card:hover .avatar-frame {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.homepage-profile-img,
+.pixel-character-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.avatar-level-tag {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.hero-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.realm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.badge-square {
+  width: 6px;
+  height: 6px;
+  background: var(--mc-emerald);
+}
+
+.badge-text {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+  text-transform: uppercase;
+}
+
+.zone-title {
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--text-main);
+}
+
+.zone-subtitle {
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--text-main);
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.zone-description {
+  margin: 6px 0 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  max-width: 680px;
+}
+
+@media (max-width: 680px) {
+  .zone-hero-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 18px;
+    gap: 16px;
+  }
+
+  .zone-title {
+    font-size: 24px;
+  }
+
+  .zone-subtitle {
+    font-size: 14px;
+  }
+
+  .zone-description {
+    font-size: 13px;
+  }
+
+  .top-status-indicator {
+    display: none;
+  }
+}

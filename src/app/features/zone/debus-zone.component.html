@@ -1,0 +1,27 @@
+<main class="zone-main-container">
+  <!-- Top Header with Avatar, Back Button, and Theme Toggle -->
+  <app-zone-header />
+
+  <!-- Global Hotbar Navigation Tabs (with DEBU'S ZONE active) -->
+  <div class="zone-nav-wrapper">
+    <app-tab-nav [activeTab]="'zone'" (tabChange)="handleTabChange($event)" />
+  </div>
+
+  <!-- Interactive RPG Personal Room Scene -->
+  <app-room-scene />
+
+  <!-- Content Sections -->
+  <div class="zone-modules-stack">
+    <!-- Module 01: Developer Lab & Monospace Terminal CLI -->
+    <app-developer-lab />
+
+    <!-- Module 02: Hip-Hop Station & Spotify Embed -->
+    <app-hiphop-station />
+
+    <!-- Module 03: Anime Watchlist & Review Modal -->
+    <app-anime-watchlist />
+  </div>
+</main>
+
+<!-- Unified Site Footer -->
+<app-footer />

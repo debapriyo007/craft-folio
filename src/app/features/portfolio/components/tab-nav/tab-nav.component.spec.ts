@@ -20,9 +20,9 @@ describe('TabNavComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render 3 navigation tabs', () => {
+  it('should render 4 navigation tabs', () => {
     const buttons = fixture.nativeElement.querySelectorAll('.glass-tab-btn');
-    expect(buttons.length).toBe(3);
+    expect(buttons.length).toBe(4);
   });
 
   it('should emit tabChange event when a tab is clicked', () => {

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <radialGradient id="goldGlow300" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#09090b" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="goldText" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="300" fill="#09090b"/>
+  <rect x="8" y="8" width="284" height="284" fill="url(#goldGlow300)" stroke="#f59e0b" stroke-width="2" stroke-opacity="0.4"/>
+  
+  <!-- Vinyl Rings -->
+  <circle cx="150" cy="140" r="110" fill="none" stroke="#27272a" stroke-width="1.5"/>
+  <circle cx="150" cy="140" r="90" fill="none" stroke="#3f3f46" stroke-width="1"/>
+  <circle cx="150" cy="140" r="70" fill="none" stroke="#27272a" stroke-width="1"/>
+  <circle cx="150" cy="140" r="45" fill="#18181b" stroke="#f59e0b" stroke-width="2"/>
+  
+  <!-- Center Star -->
+  <path d="M150 115 L155 130 L170 130 L158 140 L163 155 L150 145 L137 155 L142 140 L130 130 L145 130 Z" fill="url(#goldText)"/>
+
+  <!-- Typography -->
+  <text x="150" y="55" font-family="'Courier New', monospace" font-size="28" font-weight="900" fill="url(#goldText)" text-anchor="middle" letter-spacing="4">2PAC</text>
+  <text x="150" y="78" font-family="'Courier New', monospace" font-size="12" font-weight="700" fill="#fbbf24" text-anchor="middle" letter-spacing="3">GREATEST HITS</text>
+
+  <rect x="50" y="222" width="200" height="26" fill="#18181b" stroke="#ca8a04" stroke-width="1" rx="4"/>
+  <text x="150" y="239" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#fef08a" text-anchor="middle" letter-spacing="2">CHANGES // 1998</text>
+  <text x="150" y="272" font-family="'Courier New', monospace" font-size="9" fill="#9ca3af" text-anchor="middle" letter-spacing="1">DEBU'S #1 ALL-TIME FAVORITE</text>
+</svg>

@@ -1,0 +1,64 @@
+<header class="zone-header-container" aria-label="Debu's Zone Header">
+  <!-- Top Action Navigation Bar -->
+  <div class="zone-top-actions">
+    <button
+      type="button"
+      class="back-portfolio-btn"
+      (click)="returnToPortfolio()"
+      aria-label="Return to portfolio overview"
+    >
+      <svg
+        class="back-arrow-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      <span class="btn-text">← BACK TO PORTFOLIO</span>
+    </button>
+
+    <div class="top-status-indicator" aria-hidden="true">
+      <span class="status-dot"></span>
+      <span class="status-label">ZONE ONLINE // LVL 25</span>
+    </div>
+
+    <div class="zone-theme-wrapper">
+      <app-theme-toggle />
+    </div>
+  </div>
+
+  <!-- Profile Banner Content -->
+  <div class="zone-hero-card">
+    <div class="hero-avatar-wrapper">
+      <div class="avatar-frame">
+        <img
+          [src]="profile().avatar"
+          [alt]="profile().name + ' Profile Avatar'"
+          class="homepage-profile-img"
+          width="76"
+          height="76"
+        />
+      </div>
+      <div class="avatar-level-tag">PLAYER 1</div>
+    </div>
+
+    <div class="hero-text-block">
+      <div class="realm-badge">
+        <span class="badge-square"></span>
+        <span class="badge-text">PERSONAL SANCTUARY</span>
+      </div>
+
+      <h1 class="zone-title">DEBU'S ZONE</h1>
+      <p class="zone-subtitle">Beyond the code. Into my world.</p>
+      <p class="zone-description">
+        A little corner of the internet where coding meets hip-hop and anime.
+      </p>
+    </div>
+  </div>
+</header>

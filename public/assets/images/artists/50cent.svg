@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="fiftyGlow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#09090b" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+  <rect width="200" height="200" rx="16" fill="#0c0d12"/>
+  <circle cx="100" cy="85" r="75" fill="url(#fiftyGlow)"/>
+  <!-- Yankees Cap (Backwards / Front Brim) -->
+  <path d="M68 84 C68 62 82 56 100 56 C118 56 132 62 132 84 Z" fill="#1e293b"/>
+  <path d="M60 84 L140 84 L136 90 L64 90 Z" fill="#0f172a"/>
+  <text x="100" y="76" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">50</text>
+  <!-- Shoulders & Tank / Vest -->
+  <path d="M42 195 C45 155 60 142 85 138 L115 138 C140 142 155 155 158 195 Z" fill="#18181b" stroke="#27272a" stroke-width="2"/>
+  <!-- Head -->
+  <ellipse cx="100" cy="104" rx="32" ry="36" fill="#78350f"/>
+  <!-- Eyes -->
+  <ellipse cx="88" cy="100" rx="4" ry="3" fill="#18181b"/>
+  <ellipse cx="112" cy="100" rx="4" ry="3" fill="#18181b"/>
+  <!-- Nose & Smile / Dimple -->
+  <path d="M99 98 L97 110 L103 110" fill="none" stroke="#451a03" stroke-width="2"/>
+  <path d="M90 120 Q100 128 110 120" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Platinum chain with Spinning '50' cross -->
+  <path d="M80 142 C90 178 110 178 120 142" fill="none" stroke="#e2e8f0" stroke-width="3"/>
+  <circle cx="100" cy="168" r="8" fill="#e2e8f0"/>
+  <text x="100" y="42" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#f87171" text-anchor="middle" letter-spacing="1">G-UNIT // 50</text>
+  <rect x="2" y="2" width="196" height="196" rx="14" fill="none" stroke="#27272a" stroke-width="2"/>
+</svg>

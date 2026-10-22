@@ -1,0 +1,65 @@
+<div class="terminal-container" (click)="focusInput()" aria-label="Developer Interactive Terminal">
+  <!-- Window Header -->
+  <div class="terminal-titlebar">
+    <div class="window-dots" aria-hidden="true">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <div class="window-title">bash — debu&#64;sanctuary: ~ (tty1)</div>
+    <div class="terminal-status" aria-hidden="true">UTF-8 // ZSH</div>
+  </div>
+
+  <!-- Terminal Output Screen -->
+  <div #terminalOutput class="terminal-screen" role="log" aria-live="polite">
+    @for (log of logs(); track log.id) {
+      @if (log.type === 'input') {
+        <div class="log-line input-line">
+          <span class="prompt-prefix">debu&#64;sanctuary:~$</span>
+          <span class="cmd-text">{{ log.text }}</span>
+        </div>
+      } @else if (log.type === 'system') {
+        <div class="log-line system-line"><span class="sys-prefix">[SYS]</span> {{ log.text }}</div>
+      } @else if (log.type === 'error') {
+        <div class="log-line error-line"><span class="err-prefix">[ERR]</span> {{ log.text }}</div>
+      } @else {
+        <div class="log-line output-line">
+          <pre class="output-pre">{{ log.text }}</pre>
+        </div>
+      }
+    }
+
+    <!-- Active Input Line -->
+    <form class="input-form" (submit)="$event.preventDefault(); runCommand()">
+      <span class="prompt-prefix">debu&#64;sanctuary:~$</span>
+      <input
+        #terminalInput
+        type="text"
+        [(ngModel)]="commandText"
+        name="terminalCmd"
+        class="terminal-cmd-input"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="type command (e.g. help, projects, skills)..."
+        aria-label="Terminal command input"
+      />
+    </form>
+  </div>
+
+  <!-- Quick Command Buttons Bar -->
+  <div class="quick-commands-bar">
+    <span class="quick-lbl">CLICKABLE COMMANDS:</span>
+    <div class="quick-buttons">
+      @for (cmd of quickCommands; track cmd) {
+        <button
+          type="button"
+          class="cmd-chip"
+          (click)="$event.stopPropagation(); runCommand(cmd)"
+          [attr.aria-label]="'Run command ' + cmd"
+        >
+          {{ cmd }}
+        </button>
+      }
+    </div>
+  </div>
+</div>

@@ -3,14 +3,42 @@
   [class.visible]="isVisible()"
   [class.hovered]="isHovered()"
   [class.clicking]="isClicking()"
+  [attr.data-cursor]="activeCursor"
   aria-hidden="true"
 >
-  <div id="flag-cursor" class="flag-cursor-wrapper">
-    <img
-      src="assets/images/indian_flag_cursor.gif"
-      alt="Pixel Indian Flag Cursor"
-      class="tiranga-flag-img"
-      draggable="false"
-    />
+  <!-- 🌌 High-Performance Canvas for 60FPS Minecraft Particle Trail -->
+  <canvas #particleCanvas class="cursor-particle-canvas"></canvas>
+
+  <div
+    id="custom-cursor-wrapper"
+    class="cursor-wrapper"
+    [class.mode-gauntlet]="activeCursor === 'gauntlet'"
+    [class.mode-flag]="activeCursor === 'flag'"
+  >
+    <!-- ✨ Cosmic Orbit Aura Rings -->
+    <div class="cursor-aura-halo" aria-hidden="true"></div>
+    <div class="cursor-aura-ring ring-outer" aria-hidden="true"></div>
+    <div class="cursor-aura-ring ring-inner" aria-hidden="true"></div>
+
+    <!-- 💥 Click Shockwave Wavefront -->
+    @if (isClicking()) {
+      <div class="cursor-click-shockwave" aria-hidden="true"></div>
+    }
+
+    @if (activeCursor === 'gauntlet') {
+      <img
+        src="assets/images/nano_gauntlet_cursor.gif"
+        alt="Animated Minecraft Pixel Art Iron Man Nano Gauntlet Cursor"
+        class="cursor-img gauntlet-img"
+        draggable="false"
+      />
+    } @else {
+      <img
+        src="assets/images/indian_flag_cursor.gif"
+        alt="Pixel Indian Flag Cursor"
+        class="cursor-img flag-img"
+        draggable="false"
+      />
+    }
   </div>
 </div>

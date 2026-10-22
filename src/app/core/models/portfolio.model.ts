@@ -1,4 +1,4 @@
-export type PortfolioTab = 'resume' | 'projects' | 'github';
+export type PortfolioTab = 'resume' | 'projects' | 'github' | 'zone';
 
 export interface EducationItem {
   institution: string;

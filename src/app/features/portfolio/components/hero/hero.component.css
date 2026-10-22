@@ -71,8 +71,8 @@
 
 .hero-header {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  align-items: baseline;
+  gap: 6px;
   flex-wrap: wrap;
   margin-bottom: 16px;
 }
@@ -89,56 +89,84 @@
 }
 
 .hero-wave {
+  /* 🎛️ ADJUST DESKTOP EMOJI SIZE HERE (e.g., 42px, 44px, 46px) */
+  --wave-size: 60px;
+
   display: inline-flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  transform-origin: 55% 85%;
-  animation: mcWave 2.2s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  position: relative;
+  top: 3px;
+  transform-origin: 70% 85%;
   cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 8px;
+  user-select: none;
+  transition:
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.25s ease;
+  outline: none;
 }
 
 .hero-wave:hover {
-  transform: scale(1.2) rotate(12deg);
+  transform: scale(1.18) rotate(-6deg);
+}
+
+.hero-wave:hover .wave-pixel-img {
+  filter: drop-shadow(0 0 14px rgba(220, 175, 130, 0.75)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+}
+
+.hero-wave:active {
+  transform: scale(0.92) rotate(6deg);
+}
+
+.hero-wave:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.hero-wave-celebrate {
+  animation: mcWaveCelebrate 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
 }
 
 .wave-pixel-img {
-  width: 42px;
-  height: auto;
+  width: var(--wave-size);
+  height: var(--wave-size);
+  object-fit: contain;
   display: block;
-  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
   user-select: none;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+  transition: filter 0.25s ease;
 }
 
 [data-theme='light'] .wave-pixel-img {
-  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.18));
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.2));
 }
 
-@keyframes mcWave {
+[data-theme='light'] .hero-wave:hover .wave-pixel-img {
+  filter: drop-shadow(0 0 14px rgba(185, 135, 90, 0.65)) drop-shadow(0 3px 8px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes mcWaveCelebrate {
   0% {
-    transform: rotate(0deg);
-  }
-  10% {
-    transform: rotate(16deg);
+    transform: scale(1) rotate(0deg);
   }
   20% {
-    transform: rotate(-10deg);
-  }
-  30% {
-    transform: rotate(18deg);
+    transform: scale(1.36) rotate(20deg);
   }
   40% {
-    transform: rotate(-6deg);
-  }
-  50% {
-    transform: rotate(12deg);
+    transform: scale(1.36) rotate(-22deg);
   }
   60% {
-    transform: rotate(0deg);
+    transform: scale(1.22) rotate(14deg);
+  }
+  80% {
+    transform: scale(1.1) rotate(-8deg);
   }
   100% {
-    transform: rotate(0deg);
+    transform: scale(1) rotate(0deg);
   }
 }
 
@@ -218,6 +246,10 @@
     gap: 24px;
   }
 
+  .hero-header {
+    gap: 4px;
+  }
+
   .hero-avatar-container {
     width: 170px;
     height: 170px;
@@ -225,5 +257,11 @@
 
   .hero-name {
     font-size: 34px;
+  }
+
+  .hero-wave {
+    /* 🎛️ ADJUST MOBILE EMOJI SIZE HERE (e.g., 32px, 34px) */
+    --wave-size: 50px;
+    top: 2px;
   }
 }

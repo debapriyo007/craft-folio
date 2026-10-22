@@ -14,7 +14,7 @@ export class ThemeToggleComponent {
     return this.themeService.currentTheme() === 'dark';
   }
 
-  toggle(event?: MouseEvent): void {
+  toggle(event?: MouseEvent | TouchEvent | Event): void {
     this.themeService.toggleTheme(event);
   }
 }

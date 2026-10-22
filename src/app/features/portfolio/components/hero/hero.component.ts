@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { PortfolioDataService } from '@core/services';
 
 @Component({
@@ -10,4 +10,10 @@ import { PortfolioDataService } from '@core/services';
 export class HeroComponent {
   private readonly portfolioService = inject(PortfolioDataService);
   readonly profile = this.portfolioService.profile;
+  readonly isWaving = signal(false);
+
+  triggerWave(): void {
+    this.isWaving.set(true);
+    setTimeout(() => this.isWaving.set(false), 800);
+  }
 }

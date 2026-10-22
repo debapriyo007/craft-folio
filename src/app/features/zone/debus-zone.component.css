@@ -1,0 +1,38 @@
+:host {
+  display: block;
+}
+
+.zone-main-container {
+  width: min(1140px, calc(100% - 32px));
+  margin: 0 auto;
+  padding-top: 22px;
+  animation: zonePageFadeIn 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes zonePageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.zone-nav-wrapper {
+  margin-bottom: 24px;
+}
+
+.zone-modules-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (max-width: 900px) {
+  .zone-main-container {
+    width: min(100% - 24px, 1140px);
+    padding-top: 14px;
+  }
+}

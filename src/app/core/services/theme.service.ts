@@ -33,7 +33,7 @@ export class ThemeService {
     }
   }
 
-  toggleTheme(event?: MouseEvent): void {
+  toggleTheme(event?: MouseEvent | TouchEvent | Event): void {
     const next = this.currentTheme() === 'dark' ? 'light' : 'dark';
 
     if (!this.isBrowser) {
@@ -42,19 +42,59 @@ export class ThemeService {
     }
 
     const doc = document as any;
-    // If View Transition API is not supported or user prefers reduced motion, toggle directly
-    if (!doc.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
+    // Check if View Transition API is supported and user does not prefer reduced motion
+    const prefersReducedMotion =
+      typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+        ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        : false;
+    if (!doc.startViewTransition || prefersReducedMotion) {
+      // Fallback: smooth full-DOM CSS transition for browsers/devices without View Transitions
+      if (!prefersReducedMotion) {
+        document.documentElement.classList.add('theme-transition-fallback');
+        setTimeout(() => {
+          document.documentElement.classList.remove('theme-transition-fallback');
+        }, 550);
+      }
+      this.applyTheme(next);
       this.currentTheme.set(next);
       return;
     }
 
-    const x = event?.clientX ?? window.innerWidth - 60;
-    const y = event?.clientY ?? 40;
-    const endRadius = Math.hypot(
-      Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y),
-    );
+    // Determine the precise origin coordinates (x, y) for the circular wave
+    // Accurately locate the toggle button element across all screen sizes (desktop, tablet, mobile)
+    let x: number;
+    let y: number;
 
+    const targetBtn =
+      (event?.currentTarget as HTMLElement)?.closest?.('button') ||
+      (event?.target as HTMLElement)?.closest?.('button') ||
+      (document.querySelector('app-theme-toggle .theme-toggle-btn') as HTMLElement | null);
+
+    if (targetBtn) {
+      const rect = targetBtn.getBoundingClientRect();
+      x = Math.round(rect.left + rect.width / 2);
+      y = Math.round(rect.top + rect.height / 2);
+    } else if (
+      event &&
+      'clientX' in event &&
+      typeof (event as MouseEvent).clientX === 'number' &&
+      (event as MouseEvent).clientX > 0
+    ) {
+      x = (event as MouseEvent).clientX;
+      y = (event as MouseEvent).clientY;
+    } else {
+      // Fallback coordinate near top-right where action buttons sit
+      x = window.innerWidth - 36;
+      y = 36;
+    }
+
+    // Calculate maximum radius to the furthest screen corner, with 10% safety margin for rounded mobile display corners
+    const maxX = Math.max(x, window.innerWidth - x);
+    const maxY = Math.max(y, window.innerHeight - y);
+    const endRadius = Math.ceil(Math.hypot(maxX, maxY) * 1.1);
+
+    // Start View Transition
     const transition = doc.startViewTransition(() => {
       this.applyTheme(next);
       this.currentTheme.set(next);
@@ -62,19 +102,23 @@ export class ThemeService {
 
     transition.ready
       .then(() => {
+        // Smooth material easing curve: starts gracefully, glides across the layout, and settles smoothly.
+        // Duration: 750ms with 40ms staging delay gives a breathtaking, clearly visible circular reveal.
         document.documentElement.animate(
           {
             clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`],
           },
           {
-            duration: 480,
-            easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+            duration: 750,
+            delay: 40,
+            easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            fill: 'both',
             pseudoElement: '::view-transition-new(root)',
           },
         );
       })
       .catch(() => {
-        // Fallback if animation fails
+        // Fallback safety if animation fails
       });
   }
 
