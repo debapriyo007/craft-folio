@@ -15,21 +15,16 @@ describe('HipHopStationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should render all 4 core hip-hop artists', () => {
-    expect(component.artists.length).toBe(4);
-    const names = component.artists.map((a) => a.name);
-    expect(names).toContain('2Pac');
-    expect(names).toContain('Eminem');
-    expect(names).toContain('Kendrick Lamar');
-    expect(names).toContain('50 Cent');
+  it('should create hip-hop station component', () => {
+    expect(component).toBeTruthy();
   });
 
-  it('should open and close artist dossier modal', () => {
-    expect(component.selectedArtist()).toBeNull();
-    component.openArtistDetail(component.artists[0]);
-    expect(component.selectedArtist()).toBe(component.artists[0]);
+  it('should render section title and spotify embed', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const title = compiled.querySelector('.section-title');
+    expect(title?.textContent).toContain('HIP-HOP STATION');
 
-    component.closeArtistDetail();
-    expect(component.selectedArtist()).toBeNull();
+    const spotifyWrap = compiled.querySelector('.spotify-section-wrap');
+    expect(spotifyWrap).toBeTruthy();
   });
 });

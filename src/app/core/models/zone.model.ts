@@ -4,6 +4,7 @@ export interface AnimeItem {
   id: string;
   title: string;
   poster: string;
+  fallbackPoster?: string;
   rating: string;
   status: 'WATCHING' | 'COMPLETED' | 'PLAN TO WATCH';
   episodes: string;
@@ -35,12 +36,22 @@ export interface CurrentlyListening {
   albumCover?: string;
 }
 
+export interface TerminalTableRow {
+  title: string;
+  count: string;
+}
+
 export interface TerminalLog {
   id?: number | string;
   command?: string;
   output?: string;
   text?: string;
-  type?: 'input' | 'output' | 'standard' | 'success' | 'error' | 'system';
+  type?: 'input' | 'output' | 'standard' | 'success' | 'error' | 'system' | 'table';
+  outputColor?: 'cyan' | 'yellow' | 'pink' | 'green' | 'default';
+  tableTitle?: string;
+  tableHeaderLeft?: string;
+  tableHeaderRight?: string;
+  tableRows?: TerminalTableRow[];
 }
 
 export interface RoomModule {

@@ -22,44 +22,61 @@
         <div class="log-line system-line"><span class="sys-prefix">[SYS]</span> {{ log.text }}</div>
       } @else if (log.type === 'error') {
         <div class="log-line error-line"><span class="err-prefix">[ERR]</span> {{ log.text }}</div>
+      } @else if (log.type === 'table') {
+        <div class="terminal-table-container">
+          @if (log.tableTitle) {
+            <div class="terminal-table-caption">{{ log.tableTitle }}</div>
+          }
+          <div class="terminal-table-box">
+            <div class="table-row table-header">
+              <span class="col-title">{{ log.tableHeaderLeft || 'Title' }}</span>
+              <span class="col-divider">│</span>
+              <span class="col-count">{{ log.tableHeaderRight || 'Detail' }}</span>
+            </div>
+            <div class="table-divider-line"></div>
+            @for (row of log.tableRows; track row.title) {
+              <div class="table-row">
+                <span class="col-title">{{ row.title }}</span>
+                <span class="col-divider">│</span>
+                <span class="col-count">{{ row.count }}</span>
+              </div>
+            }
+          </div>
+        </div>
       } @else {
-        <div class="log-line output-line">
-          <pre class="output-pre">{{ log.text }}</pre>
+        <div class="log-line output-line" [class]="log.outputColor ? 'color-' + log.outputColor : ''">
+          <pre
+            class="output-pre"
+            [class]="log.outputColor ? 'color-' + log.outputColor : ''"
+          >{{ log.text }}</pre>
         </div>
       }
     }
 
-    <!-- Active Input Line -->
-    <form class="input-form" (submit)="$event.preventDefault(); runCommand()">
-      <span class="prompt-prefix">debu&#64;sanctuary:~$</span>
-      <input
-        #terminalInput
-        type="text"
-        [(ngModel)]="commandText"
-        name="terminalCmd"
-        class="terminal-cmd-input"
-        autocomplete="off"
-        spellcheck="false"
-        placeholder="type command (e.g. help, projects, skills)..."
-        aria-label="Terminal command input"
-      />
-    </form>
-  </div>
-
-  <!-- Quick Command Buttons Bar -->
-  <div class="quick-commands-bar">
-    <span class="quick-lbl">CLICKABLE COMMANDS:</span>
-    <div class="quick-buttons">
-      @for (cmd of quickCommands; track cmd) {
-        <button
-          type="button"
-          class="cmd-chip"
-          (click)="$event.stopPropagation(); runCommand(cmd)"
-          [attr.aria-label]="'Run command ' + cmd"
-        >
-          {{ cmd }}
-        </button>
-      }
-    </div>
+    <!-- Active Auto-Typing Line -->
+    @if (isAutoTyping()) {
+      <div class="log-line input-line active-typing-line">
+        <span class="prompt-prefix">debu&#64;sanctuary:~$</span>
+        <span class="cmd-text">{{ currentTypedCommand() }}</span>
+        <span class="terminal-cursor" aria-hidden="true">█</span>
+      </div>
+    } @else {
+      <!-- Active Interactive Input Line -->
+      <form class="input-form" (submit)="$event.preventDefault(); runCommand()">
+        <span class="prompt-prefix">debu&#64;sanctuary:~$</span>
+        <input
+          #terminalInput
+          type="text"
+          [(ngModel)]="commandText"
+          name="terminalCmd"
+          class="terminal-cmd-input"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="type command (whoami, personal-details, projects, favourite-songs, favourite-anime)..."
+          aria-label="Terminal command input"
+        />
+        <span class="terminal-cursor" aria-hidden="true">█</span>
+      </form>
+    }
   </div>
 </div>

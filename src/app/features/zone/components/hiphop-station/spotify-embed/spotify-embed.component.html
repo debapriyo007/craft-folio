@@ -5,9 +5,27 @@
       <span class="spotify-dot" aria-hidden="true"></span>
       <span class="embed-title">SPOTIFY AUDIO INTERFACE // HI-FI DECK</span>
       <span class="active-badge">{{ currentChannel().badge }}</span>
+      @if (activeTrackName(); as trackName) {
+        <span class="active-track-pill">CUED: {{ trackName }}</span>
+      }
     </div>
 
     <div class="embed-controls">
+      @if (currentChannel().tracks?.length) {
+        <button
+          type="button"
+          class="tracklist-toggle-btn"
+          [class.active]="isTracklistOpen()"
+          (click)="toggleTracklist()"
+          aria-label="Toggle album tracklist"
+        >
+          <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor" aria-hidden="true">
+            <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+          </svg>
+          <span>{{ isTracklistOpen() ? 'HIDE TRACKS' : 'TRACKLIST (' + currentChannel().tracks?.length + ')' }}</span>
+        </button>
+      }
+
       <button
         type="button"
         class="mode-toggle-btn"
@@ -21,7 +39,7 @@
         type="button"
         class="spotify-direct-btn"
         (click)="openSpotifyDirect()"
-        aria-label="Open current playlist in Spotify App"
+        aria-label="Open current album in Spotify App"
       >
         <svg
           viewBox="0 0 24 24"
@@ -35,7 +53,7 @@
             d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"
           />
         </svg>
-        <span>OPEN SPOTIFY ↗</span>
+        <span>LAUNCH ALBUM</span>
       </button>
     </div>
   </div>
@@ -60,38 +78,137 @@
   <!-- Channel Description Info Bar -->
   <div class="channel-info-strip">
     <div class="strip-left">
-      <span class="strip-icon" aria-hidden="true">▶</span>
+      <svg
+        viewBox="0 0 24 24"
+        width="10"
+        height="10"
+        fill="currentColor"
+        class="strip-icon"
+        aria-hidden="true"
+      >
+        <polygon points="6 4 20 12 6 20 6 4" />
+      </svg>
       <span class="strip-desc">{{ currentChannel().description }}</span>
     </div>
     <div class="strip-right" aria-hidden="true">
-      <span class="audio-specs">320 KBPS • STEREO</span>
+      <span class="audio-specs">FULL ALBUM • 320 KBPS • STEREO</span>
     </div>
   </div>
 
+  <!-- Active Single Track Alert Bar (if user cued a specific track) -->
+  @if (activeTrackName(); as currentTrack) {
+    <div class="single-track-bar">
+      <div class="single-track-info">
+        <span class="single-track-dot"></span>
+        <span>NOW PLAYING SINGLE TRACK: <strong>{{ currentTrack }}</strong></span>
+      </div>
+      <button type="button" class="reset-album-btn" (click)="resetToFullAlbum()">
+        PLAY FULL ALBUM (ALL TRACKS)
+      </button>
+    </div>
+  }
+
   <!-- Spotify Player IFrame -->
   <div class="iframe-wrapper" [class.expanded]="isExpanded()">
+    @if (isIframeLoading()) {
+      <div class="iframe-loader-placeholder" aria-hidden="true">
+        <div class="equalizer-wave">
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+        </div>
+        <span class="loader-status-text">INITIALIZING SPOTIFY AUDIO DECK...</span>
+      </div>
+    }
     @if (safeUrl(); as url) {
       <iframe
         [src]="url"
         width="100%"
-        [height]="isExpanded() ? '352' : '152'"
+        [height]="isExpanded() ? '380' : '152'"
         frameBorder="0"
         allowfullscreen=""
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         [title]="currentChannel().name + ' Spotify Player'"
         class="spotify-iframe"
+        [class.ready]="!isIframeLoading()"
+        (load)="onIframeLoad()"
       ></iframe>
     }
   </div>
 
+  <!-- Expandable Full Album Tracklist Drawer -->
+  @if (isTracklistOpen() && currentChannel().tracks?.length) {
+    <div class="tracklist-container" aria-label="Album Tracklist">
+      <div class="tracklist-header">
+        <span class="tracklist-title">{{ currentChannel().albumTitle }} // OFFICIAL TRACKLIST</span>
+        <span class="tracklist-count">{{ currentChannel().tracks?.length }} SONGS</span>
+      </div>
+      <div class="tracklist-grid">
+        @for (track of currentChannel().tracks; track track.number) {
+          <div
+            class="track-row"
+            [class.cued]="activeTrackName() === track.title"
+          >
+            <div class="track-number">{{ track.number < 10 ? '0' + track.number : track.number }}</div>
+            <div class="track-details">
+              <span class="track-name">{{ track.title }}</span>
+              <span class="track-sub">{{ track.artist }}</span>
+            </div>
+            <div class="track-duration">{{ track.duration }}</div>
+            <div class="track-actions">
+              <button
+                type="button"
+                class="track-play-btn"
+                (click)="cueTrack(track)"
+                [attr.aria-label]="'Play ' + track.title"
+              >
+                <svg viewBox="0 0 24 24" width="9" height="9" fill="currentColor" aria-hidden="true">
+                  <polygon points="5 3 19 12 5 21 5 3"/>
+                </svg>
+                <span>CUE</span>
+              </button>
+              <button
+                type="button"
+                class="track-launch-btn"
+                (click)="openTrackDirect(track)"
+                [attr.aria-label]="'Open ' + track.title + ' in Spotify'"
+              >
+                OPEN
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
   <!-- Direct Launch Helper -->
   <div class="embed-helper-bar">
     <div class="helper-text">
-      <span class="helper-icon">ℹ</span>
-      <span>If playback is paused or blocked by browser extensions, open directly:</span>
+      <svg
+        viewBox="0 0 24 24"
+        width="13"
+        height="13"
+        fill="currentColor"
+        class="helper-icon"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" />
+        <line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2" />
+        <circle cx="12" cy="8" r="1.25" fill="currentColor" />
+      </svg>
+      <span>To stream full uninterrupted songs in the embedded deck, log into Spotify in this browser:</span>
     </div>
-    <button type="button" class="helper-action-btn" (click)="openSpotifyDirect()">
-      LAUNCH IN SPOTIFY ↗
-    </button>
+    <div class="helper-actions">
+      <button type="button" class="helper-login-btn" (click)="openSpotifyLogin()">
+        LOGIN TO SPOTIFY
+      </button>
+      <button type="button" class="helper-action-btn" (click)="openSpotifyDirect()">
+        LAUNCH FULL ALBUM
+      </button>
+    </div>
   </div>
 </div>

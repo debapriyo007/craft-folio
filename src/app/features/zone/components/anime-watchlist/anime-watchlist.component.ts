@@ -17,9 +17,37 @@ export class AnimeWatchlistComponent {
 
   readonly filteredAnime = computed(() => {
     const filter = this.activeFilter();
-    if (filter === 'ALL') return this.animeList;
-    return this.animeList.filter((item) => item.status === filter);
+    const list =
+      filter === 'ALL'
+        ? this.animeList
+        : this.animeList.filter((item) => item.status === filter);
+
+    return [...list].sort((a, b) => {
+      const rA = parseFloat(a.rating.replace('/10', '')) || 0;
+      const rB = parseFloat(b.rating.replace('/10', '')) || 0;
+      return rB - rA;
+    });
   });
+
+  readonly loadedImages = signal<Record<string, boolean>>({});
+
+  onPosterLoaded(id: string): void {
+    this.loadedImages.update((curr) => ({ ...curr, [id]: true }));
+  }
+
+  isPosterLoaded(id: string): boolean {
+    return Boolean(this.loadedImages()[id]);
+  }
+
+  handlePosterError(event: Event, item: AnimeItem): void {
+    const target = event.target as HTMLImageElement;
+    if (!target) return;
+    if (item.fallbackPoster && target.src !== item.fallbackPoster) {
+      target.src = item.fallbackPoster;
+    } else if (!target.src.includes('anime-placeholder.svg')) {
+      target.src = 'assets/images/anime/anime-placeholder.svg';
+    }
+  }
 
   setFilter(filter: AnimeFilter): void {
     this.activeFilter.set(filter);

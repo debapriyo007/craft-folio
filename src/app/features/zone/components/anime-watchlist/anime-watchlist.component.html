@@ -67,12 +67,18 @@
         (keydown.space)="openDetail(anime)"
         [attr.aria-label]="anime.title + ', Status: ' + anime.status + ', Click to view review'"
       >
-        <div class="poster-container">
+        <div class="poster-container" [class.loaded]="isPosterLoaded(anime.id)">
+          @if (!isPosterLoaded(anime.id)) {
+            <div class="poster-skeleton-shimmer" aria-hidden="true"></div>
+          }
           <img
             [src]="anime.poster"
             [alt]="anime.title + ' Poster'"
             class="poster-img"
-            loading="lazy"
+            [class.loaded]="isPosterLoaded(anime.id)"
+            (load)="onPosterLoaded(anime.id)"
+            referrerpolicy="no-referrer"
+            (error)="handlePosterError($event, anime)"
           />
           <div class="poster-overlay"></div>
           <span
@@ -108,6 +114,13 @@
           </div>
         </div>
       </article>
+    } @empty {
+      <div class="empty-state-card">
+        <p class="empty-state-title">NO ENTRIES IN THIS CATEGORY</p>
+        <p class="empty-state-desc">
+          All featured series are currently watched or actively in progress.
+        </p>
+      </div>
     }
   </div>
 
@@ -138,7 +151,13 @@
 
         <div class="modal-body">
           <div class="modal-poster-wrap">
-            <img [src]="item.poster" [alt]="item.title" class="modal-poster-img" />
+            <img
+              [src]="item.poster"
+              [alt]="item.title"
+              class="modal-poster-img"
+              referrerpolicy="no-referrer"
+              (error)="handlePosterError($event, item)"
+            />
             <div class="modal-status-badge">{{ item.status }}</div>
           </div>
 
